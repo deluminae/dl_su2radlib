@@ -476,9 +476,7 @@ class SketchupViewsList
       pages = Sketchup.active_model.pages
       # INFO: add default camera as a possible view even if other views exist
       filename = File.join(@output_dir,"views", @camera_view_name + ".vf")
-      view = SketchupView.new(@camera_view_name, true,filename)
-      view.setViewParameters(Sketchup.active_model.active_view.camera)
-      @_views[view.name] = view
+      
 
       pages.each { |page|
         viewname = page.name
@@ -495,6 +493,10 @@ class SketchupViewsList
             @_views[view.name] = view
         end
       }
+      
+      view = SketchupView.new(@camera_view_name, true,filename)
+      view.setViewParameters(Sketchup.active_model.active_view.camera)
+      @_views[view.name] = view
     end
 
 end
